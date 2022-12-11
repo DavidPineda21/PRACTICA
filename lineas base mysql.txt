@@ -1,0 +1,51 @@
+CREATE DATABASE macsie;
+
+create table macsie(
+  ie varchar(6) not null,
+  mac varchar(19) not null,
+  propietario varchar(30) not null,
+  dispositivo varchar(30) not null,
+  primary key(ie,mac)
+  );
+
+create table usuario(
+  user varchar(30) not null,
+  pass varchar(30) not null,
+  primary key(user)
+  );
+
+create table acronimos(
+  ie varchar(30) not null,
+  acronimo varchar(6) not null,
+  primary key(acronimo)
+  );
+
+UPDATE macsie SET ie=UPPER(ie)
+UPDATE macsie SET mac=UPPER(mac)
+UPDATE macsie SET propietario=UPPER(propietario)
+UPDATE macsie SET dispositivo=UPPER(dispositivo)
+
+cd c:\xampp\mysql\bin
+mysql -h 172.16.197.240 -u alejandro -pMedellin1* macsie
+mysql -u alejandro -pMedellin1* macsie
+mysql -u admin -pMedellin2* macsie
+
+
+INSERT INTO macsie (ie,mac,propietario,dispositivo)VALUES('iecrey','12-34-56-78-91-00','DAVID ALEJANDRO PINEDA AGUIRRE','TV'),
+('iecrey','12-34-56-78-91-01','DAVID ALEJANDRO PINEDA AGUIRRE','TV'),
+('iecrey','12-34-56-78-91-02','DAMIAN','TV'),
+('iecrey','12-34-56-78-91-03','DAMIAN','TV'),
+('iecrey','12-34-56-78-91-04','DAMIAN','TV'),
+('iecrey','12-34-56-78-91-05','DAMIAN','TV'),
+('iecrey','12-34-56-78-91-06','DAMIAN','TV'),
+('iecrey','12-34-56-78-91-07','DAMIAN','TV'),
+('iecrey','12-34-56-78-91-08','DAMIAN','TV');
+
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'Medellin2*';
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+    -> ON macsie.macsie
+    -> TO 'admin'@'localhost';
+
+REVOKE ALL ON macsie.usuario from 'admin'@'%';
